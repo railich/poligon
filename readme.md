@@ -64,4 +64,14 @@
 
 - создание модели и миграции
 
-        php artisan make:model Models/BlogCategory -m        
+        php artisan make:model Models/BlogCategory -m
+        
+- чтобы миграции работали на более новых БД нужно добавить длинну строки по умолчанию:
+
+        Добавить в AppServiceProvider->boot() 
+        
+            Schema::defaultStringLength(191);
+            
+- Запуск миграций
+
+        php artisan migrate            
