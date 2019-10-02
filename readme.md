@@ -1,8 +1,9 @@
-<<<<<<< HEAD
-# poligon
-Laravel framework
-=======
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+
+## Learn from video
+
+        https://www.youtube.com/watch?v=jlplQaItZa0&list=PLoonZ8wII66iP0fJPHhkLXa3k7CMef9ak&index=5
+
 
 ##Install
 
@@ -13,4 +14,7 @@ Laravel framework
 - server root folder with "public" - настраиваем в apache или в nginx
 
         server_root /var/www/test.tst/public
->>>>>>> 5bb7e38... inital commit
+
+- folder access for mac or linux
+
+        sudo chmod 777 -R storage && sudo chmod 777 -R bootstrap/cache
