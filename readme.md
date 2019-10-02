@@ -5,7 +5,7 @@
         https://www.youtube.com/watch?v=jlplQaItZa0&list=PLoonZ8wII66iP0fJPHhkLXa3k7CMef9ak&index=5
 
 
-##Install
+##Install - steps
 
 - install laravel framework v 5.7.x , установить в текущуюю папку (./)
  
@@ -18,3 +18,39 @@
 - folder access for mac or linux
 
         sudo chmod 777 -R storage && sudo chmod 777 -R bootstrap/cache
+        
+- Создаем базу данных для проекта
+        
+
+- Установка плагина для IDE (https://github.com/barryvdh/laravel-ide-helper)
+
+        composer require --dev barryvdh/laravel-ide-helper
+        
+        # далее добавим в composer.json добавляем скприпт
+        "scripts":{
+            "post-update-cmd": [
+                "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+                "@php artisan ide-helper:generate",
+                "@php artisan ide-helper:meta"
+            ]
+        },
+
+- Установка плагина для IDE (https://github.com/barryvdh/laravel-debugbar)
+
+        composer require barryvdh/laravel-debugbar --dev
+
+
+## Если проект склонирован в каталог, что нужно сделать:
+
+- .env - Нужно создать файл с настройками, который отсутсвует/не копируется в git
+
+        cp ./.env.example ./.env
+        
+- Создаем ключ для приложения
+
+        php artisan key:generate
+        
+- Обновить модули композера и сгенерить /vendor
+
+        compose update        
+        
