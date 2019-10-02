@@ -19,8 +19,11 @@
 
         sudo chmod 777 -R storage && sudo chmod 777 -R bootstrap/cache
         
-- Создаем базу данных для проекта
+- Создаем базы данных для проекта
         
+       CREATE DATABASE `poligon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
+       CREATE DATABASE `poligon_prototype` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
+       CREATE DATABASE `poligon_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
 
 - Установка плагина для IDE (https://github.com/barryvdh/laravel-ide-helper)
 
@@ -54,3 +57,11 @@
 
         compose update        
         
+        
+
+
+## Блог
+
+- создание модели и миграции
+
+        php artisan make:model Models/BlogCategory -m        
