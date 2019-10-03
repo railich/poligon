@@ -28,3 +28,8 @@ Route::group([
     Route::resource('posts', 'PostController')  // blog/posts/... index, create.... <- resource
         ->names('blog.posts'); // имя в роутах
 });
+
+// Маршруты для авторизации
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

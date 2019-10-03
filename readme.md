@@ -5,7 +5,7 @@
         https://www.youtube.com/watch?v=jlplQaItZa0&list=PLoonZ8wII66iP0fJPHhkLXa3k7CMef9ak&index=5
 
 
-##Install - steps
+## Install - steps
 
 - install laravel framework v 5.7.x , установить в текущуюю папку (./)
  
@@ -112,7 +112,15 @@
         // Создадим ресурсный контроллер постов
         php artisan make:controller Blog/PostController --resource
         
-        
+- Авторизация для сайта
+
+        php artisan make:auth
+    
+        // запустим миграции
+        php artisan migrate
+    
+        // проверим работу
+        /register
         
 ## Дополнительно
 
