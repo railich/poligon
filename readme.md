@@ -90,17 +90,30 @@
         // Сначала все удалим, потом накатим все миграции и сиды
         php artisan migrate:refresh --seed
         
+        // Если выходит ошибка, что нет классов с сидами ReflectionException  : Class UsersTableSeeder does not exist
+            связано это с Composer.json он прописывает классы в Class map, которые связаны с database классом.
+            
+        composer dumpautoload
+
+        
         
 - Создаем фабрики factory и связываем модель BlogPost
 
         php artisan make:factory BlogPostFactory --model="App\Models\BlogPost"
         
+- Создание rest тестового контроллера, с ресурсами - rest функциями (--resource)
+
+        php artisan make:controller RestTestController --resource        
         
 ## Дополнительно
 
 - Преобразование строки в slug для URL
 
         $slug = str_slug('string');
+        
+        или в более новой версии laravel
+        
+        $slug = Str::slug('string');
 
 
 - Получаем хеш пароля 

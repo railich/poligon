@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Маршрут с экшенами по умолчанию в контроллере
+Route::resource('rest', 'RestTestController')->names('restTest');
