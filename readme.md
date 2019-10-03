@@ -122,6 +122,16 @@
         // проверим работу
         /register
         
+- Админка Блога: Добавляем контроллер категорий
+
+        php artisan make:controller Blog/Admin/CategoryController --resource
+        
+- Создаем базовый контроллер для админки блога
+
+        php artisan make:controller Blog/Admin/BaseController
+        
+        // Нужно его сделать абстрактным и наследовать от базового контроллера блога
+        
 ## Дополнительно
 
 - Преобразование строки в slug для URL
