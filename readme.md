@@ -103,7 +103,16 @@
         
 - Создание rest тестового контроллера, с ресурсами - rest функциями (--resource)
 
-        php artisan make:controller RestTestController --resource        
+        php artisan make:controller RestTestController --resource    
+        
+- Создание контроллеров блога 
+    
+        php artisan make:controller Blog/BaseController
+        
+        // Создадим ресурсный контроллер постов
+        php artisan make:controller Blog/PostController --resource
+        
+        
         
 ## Дополнительно
 
@@ -119,3 +128,20 @@
 - Получаем хеш пароля 
 
         $password = bcrypt('123123);
+        
+- Если при создании таблицы в миграциях мы добавили softDeletes(), тогда в модель
+    тоже нужнжо добавить трейт SoftDeletes. При выборке будт выбираться только 
+    не удаленные записи. 
+    
+        class BlogPost extends Model 
+        {
+            use SoftDeletes;
+        }  
+    
+    чтобы показать все записи, вместе с удаленными в контроллере нужно писать запрос
+    с методом withTrashed()
+    
+    
+        $items = BlogPost::withTrashed()->all()
+        
+        
