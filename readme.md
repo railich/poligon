@@ -67,6 +67,7 @@
         php artisan make:model Models/BlogCategory -m
         
 - чтобы миграции работали на более новых БД нужно добавить длинну строки по умолчанию:
+    Миграции хранятсяв каталоге: database/migrations
 
         Добавить в AppServiceProvider->boot() 
         
@@ -74,4 +75,34 @@
             
 - Запуск миграций
 
-        php artisan migrate            
+        php artisan migrate
+
+- Добавить фейковые данные можно с помощью Сидеров и Фабрики. Добавляем данные с помощью сида. 
+    Хранятся в каталоге database/seeds
+
+        php artisan make:seeder UserTableSeeder
+
+- Запуск сидов
+
+        php artisan db:seed
+        php artisan db:seed --class=UserTableSeeder
+        
+        // Сначала все удалим, потом накатим все миграции и сиды
+        php artisan migrate:refresh --seed
+        
+        
+- Создаем фабрики factory и связываем модель BlogPost
+
+        php artisan make:factory BlogPostFactory --model="App\Models\BlogPost"
+        
+        
+## Дополнительно
+
+- Преобразование строки в slug для URL
+
+        $slug = str_slug('string');
+
+
+- Получаем хеш пароля 
+
+        $password = bcrypt('123123);
