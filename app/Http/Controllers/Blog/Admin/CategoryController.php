@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoryController extends BaseController
 {
@@ -14,7 +14,10 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        // Выбрать все данные с пагинацией, по 5 элементов на странице
+        $paginator = BlogCategory::paginate(5);
+
+        return view('blog.admin.category.index', compact('paginator'));
     }
 
     /**
@@ -57,7 +60,7 @@ class CategoryController extends BaseController
      */
     public function edit(Request $request, $id)
     {
-        dd([$request, $id]);
+        dd(['blog.admin.categories.edit', $request, $id]);
     }
 
     /**
