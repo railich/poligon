@@ -58,9 +58,12 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        dd(['blog.admin.categories.edit', $request, $id]);
+        $item = BlogCategory::findOrFail($id);
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -72,7 +75,7 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__, $request->all(), $id);
     }
 
     /**
