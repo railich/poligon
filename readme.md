@@ -162,4 +162,27 @@
     
         $items = BlogPost::withTrashed()->all()
         
+- Model: Список полей для заполнения с помощью 
+
+        в модели добавляем список допустимых полей для заполнения
         
+        protected $fillable = ['title', 'slug', 'parent_id'];
+        
+        а в контроллере
+            $item = BlogController::find($id);
+            $res = $item->fill($date)->save(); // Заполняем и Сохраняем данные
+            
+- Редиректы в контроллере
+
+        if ($result) {
+            // редирект на страницу редактирования с передачей успешного ответа в сессиях (session('success'))
+            return redirect()
+                ->route('blog.admin.categories.edit', $item->id)
+                ->with(['success' => 'Успешно сохранено']);
+        } else {
+        
+            // Возврат назад, с передачей ошибки в сессию ($errors->all())
+            return back()
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
+        }            
