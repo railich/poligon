@@ -75,7 +75,35 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $id = 11111;
+        $rules = [
+            'title' => 'required|min:5|max:200',
+            'slug' => 'max:200',
+            'description' => 'string|max:500|min:3',
+            'parent_id' => 'required|integer|exists:blog_categories,id',
+        ];
+
+        // первый способ отвалидировать данные
+        //$validatedData = $this->validate($request, $rules);
+
+
+        // Второй способ валидации в реквесте
+        //$validatedData = $request->validate($rules);
+
+        // Третий способ, создаем не посредственно объек валидатор
+        $validator = \Validator::make($request->all(), $rules);
+
+        // Разные вызовы валидации данных
+        $validatedData[] = $validator->passes(); // Если нет ошибок == true
+        $validatedData[] = $validator->validate(); // Если есть ошибки, редиректит с withErrors
+        $validatedData[] = $validator->valid(); // Возвращает только валидные поля
+        $validatedData[] = $validator->failed(); // Возвращает только НЕ валидные поля
+        $validatedData[] = $validator->errors(); // Возвращает описание ошибок
+        $validatedData[] = $validator->fails(); // Если есть ошибки == true
+
+
+        dd($validatedData);
+
+
         $item = BlogCategory::find($id);
         if (empty($item)) {
             return back()
