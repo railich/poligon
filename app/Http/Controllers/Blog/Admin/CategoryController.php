@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
@@ -69,18 +70,19 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BlogCategoryUpdateRequestAlias $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $rules = [
-            'title' => 'required|min:5|max:200',
-            'slug' => 'max:200',
-            'description' => 'string|max:500|min:3',
-            'parent_id' => 'required|integer|exists:blog_categories,id',
-        ];
+        // Правила валидации
+//        $rules = [
+//            'title' => 'required|min:5|max:200',
+//            'slug' => 'max:200',
+//            'description' => 'string|max:500|min:3',
+//            'parent_id' => 'required|integer|exists:blog_categories,id',
+//        ];
 
         // первый способ отвалидировать данные
         //$validatedData = $this->validate($request, $rules);
@@ -90,18 +92,18 @@ class CategoryController extends BaseController
         //$validatedData = $request->validate($rules);
 
         // Третий способ, создаем не посредственно объек валидатор
-        $validator = \Validator::make($request->all(), $rules);
+        //$validator = \Validator::make($request->all(), $rules);
 
         // Разные вызовы валидации данных
-        $validatedData[] = $validator->passes(); // Если нет ошибок == true
-        $validatedData[] = $validator->validate(); // Если есть ошибки, редиректит с withErrors
-        $validatedData[] = $validator->valid(); // Возвращает только валидные поля
-        $validatedData[] = $validator->failed(); // Возвращает только НЕ валидные поля
-        $validatedData[] = $validator->errors(); // Возвращает описание ошибок
-        $validatedData[] = $validator->fails(); // Если есть ошибки == true
+//        $validatedData[] = $validator->passes(); // Если нет ошибок == true
+//        $validatedData[] = $validator->validate(); // Если есть ошибки, редиректит с withErrors
+//        $validatedData[] = $validator->valid(); // Возвращает только валидные поля
+//        $validatedData[] = $validator->failed(); // Возвращает только НЕ валидные поля
+//        $validatedData[] = $validator->errors(); // Возвращает описание ошибок
+//        $validatedData[] = $validator->fails(); // Если есть ошибки == true
 
 
-        dd($validatedData);
+//        dd($validatedData);
 
 
         $item = BlogCategory::find($id);

@@ -131,7 +131,22 @@
         php artisan make:controller Blog/Admin/BaseController
         
         // Нужно его сделать абстрактным и наследовать от базового контроллера блога
-        
+
+
+- Валидация
+    
+    1) Можно проводить валидацию данных с формы в контроллере
+    2) Можно валидацию вынести в свой класс resquest --> BlogCategoryUpdateRequest
+    этот класс будет расширять FormRequest, полученные данные с формы.
+    **!!! Это считается лучшим вариантом, отдельной прослойкой для валидации.**
+
+    
+        php artisan make:request BlogCategoryUpdateRequest
+
+        - переносим $rules в BlogCategoryUpdateRequest->rules()
+        - Используем BlogCategoryUpdateRequest вместо Request $request в нашей ф-ции update
+             
+
 ## Дополнительно
 
 - Преобразование строки в slug для URL
