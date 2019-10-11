@@ -27,7 +27,7 @@
                             >
                         </div>
                         <div class="form-group">
-                            <label for="slug">Идетификатор</label>
+                            <label for="slug">Идентификатор - slug</label>
                             <input type="text"
                                    class="form-control"
                                    name="slug"
