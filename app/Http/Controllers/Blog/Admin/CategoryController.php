@@ -8,8 +8,25 @@ use App\Models\BlogCategory;
 use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 
+
+/**
+ * Class CategoryController
+ * @package App\Http\Controllers\Blog\Admin
+ */
 class CategoryController extends BaseController
 {
+    /**
+     * @var BlogCategoryRepository
+     */
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +35,8 @@ class CategoryController extends BaseController
     public function index()
     {
         // Выбрать все данные с пагинацией, по 5 элементов на странице
-        $paginator = BlogCategory::paginate(5);
+//        $paginator = BlogCategory::paginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
 
         return view('blog.admin.categories.index', compact('paginator'));
     }
@@ -31,7 +49,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $item = new BlogCategory();
-        $categoryList = BlogCategory::all();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -89,19 +107,20 @@ class CategoryController extends BaseController
      * @param BlogCategoryRepository $categoryRepository
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, BlogCategoryRepository $categoryRepository)
+    public function edit($id)
     {
-//        $item = BlogCategory::findOrFail($id);
-//        $categoryList = BlogCategory::all();
+        $item = $this
+            ->blogCategoryRepository
+            ->getEdit($id);
 
-        $item = $categoryRepository->getEdit($id);
         if (empty($item)) {
-
             // Прерываем выполнение и выводим ошибку 404
             abort(404);
         }
 
-        $categoryList = $categoryRepository->getForComboBox();
+        $categoryList = $this
+            ->blogCategoryRepository
+            ->getForComboBox();
 
         return view('blog.admin.categories.edit',
             compact('item', 'categoryList')
@@ -117,37 +136,8 @@ class CategoryController extends BaseController
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        // Правила валидации
-//        $rules = [
-//            'title' => 'required|min:5|max:200',
-//            'slug' => 'max:200',
-//            'description' => 'string|max:500|min:3',
-//            'parent_id' => 'required|integer|exists:blog_categories,id',
-//        ];
+        $item = $this->blogCategoryRepository->getEdit($id);
 
-        // первый способ отвалидировать данные
-        //$validatedData = $this->validate($request, $rules);
-
-
-        // Второй способ валидации в реквесте
-        //$validatedData = $request->validate($rules);
-
-        // Третий способ, создаем не посредственно объек валидатор
-        //$validator = \Validator::make($request->all(), $rules);
-
-        // Разные вызовы валидации данных
-//        $validatedData[] = $validator->passes(); // Если нет ошибок == true
-//        $validatedData[] = $validator->validate(); // Если есть ошибки, редиректит с withErrors
-//        $validatedData[] = $validator->valid(); // Возвращает только валидные поля
-//        $validatedData[] = $validator->failed(); // Возвращает только НЕ валидные поля
-//        $validatedData[] = $validator->errors(); // Возвращает описание ошибок
-//        $validatedData[] = $validator->fails(); // Если есть ошибки == true
-
-
-//        dd($validatedData);
-
-
-        $item = BlogCategory::find($id);
         if (empty($item)) {
             return back()
                 ->withErrors(['msg' => "Запись id=[{$id}] не найдена"])
@@ -155,9 +145,6 @@ class CategoryController extends BaseController
         }
 
         $data = $request->all();
-
-        // Загрузка и сохранение данных, способ №1
-//        $result = $item->fill($data)->save();
 
         // Загрузка и сохранение данных, способ №2
         $result = $item->update($data);
