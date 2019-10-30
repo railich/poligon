@@ -44,15 +44,14 @@ $groupData = [
 Route::group($groupData, function(){
 
     // BlogCategory
-    $methods = [
-        'index',
-        'edit',
-        'update',
-        'create',
-        'store',
-    ];
+    $methods = ['index', 'edit', 'update', 'create', 'store'];
 
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('blog.admin.categories');
+
+    //BlogPost
+    Route::resource('posts', 'PostController')
+        ->except(['show']) // кроме метода show
+        ->names('blog.admin.posts');
 });

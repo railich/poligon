@@ -44,6 +44,8 @@ abstract class CoreRepository
 
 
     /**
+     * Часть запроса, запрос к клонированной модели - фабрика
+     *
      * @return Model|\Illuminate\Foundation\Application|mixed
      */
     protected function startConditions()
