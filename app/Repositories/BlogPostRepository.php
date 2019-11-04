@@ -39,6 +39,24 @@ class BlogPostRepository extends CoreRepository
         $result = $this->startConditions()
             ->select($columns)
             ->orderBy('id', 'DESC')
+
+            // Дополним запрос отношениями/ связанными таблицами - lazy load (жадная загрузка)
+            // Способ №1 - Загружаем все поля (хотя используем только два name и titile)
+            // для этого в модели BlogPost нужны функции связанных объектов category() user() --> belongsTo
+            //->with(['category', 'user'])
+
+            // Способ №2 конкретизируем какие поля нам нужны, с помощью подфункции
+            // id - нужен для связи данных
+            ->with([
+                'category' => function($query) {
+                    // Выбираем конкретные поля - уменьшаем скорость запроса
+                    $query->select(['id', 'title']);
+                },
+
+                // Более короткая запись - синтаксический сахар
+                'user:id,name',
+            ])
+
             ->paginate(25);
 
         return $result;

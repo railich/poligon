@@ -48,4 +48,24 @@ class BlogPost extends Model
 {
     // подключим trait для того, чтобы в выборке не участвовали удаленные позиции
     use SoftDeletes;
+
+    /**
+     * Категория статьи
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        // Статья принадлежит категории, связка определяется атоматом через category_id
+        return $this->belongsTo(BlogCategory::class);
+    }
+
+    /**
+     * Автор статьи
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        // Статья принадлежит автору/пользователю
+        return $this->belongsTo(User::class);
+    }
 }
