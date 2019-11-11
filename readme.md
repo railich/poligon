@@ -1,215 +1,72 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-## Learn from video
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-        https://www.youtube.com/watch?v=jlplQaItZa0&list=PLoonZ8wII66iP0fJPHhkLXa3k7CMef9ak&index=5
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Install - steps
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- install laravel framework v 5.7.x , установить в текущуюю папку (./)
- 
-        composer create-project --prefer-dist laravel/laravel ./ "5.7.*" 
-        
-- server root folder with "public" - настраиваем в apache или в nginx
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-        server_root /var/www/test.tst/public
+## Learning Laravel
 
-- folder access for mac or linux
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-        sudo chmod 777 -R storage && sudo chmod 777 -R bootstrap/cache
-        
-- Создаем базы данных для проекта
-        
-       CREATE DATABASE `poligon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
-       CREATE DATABASE `poligon_prototype` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
-       CREATE DATABASE `poligon_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-- Установка плагина для IDE (https://github.com/barryvdh/laravel-ide-helper)
+## Laravel Sponsors
 
-        composer require --dev barryvdh/laravel-ide-helper
-        
-        # далее добавим в composer.json добавляем скприпт
-        "scripts":{
-            "post-update-cmd": [
-                "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-                "@php artisan ide-helper:generate",
-                "@php artisan ide-helper:meta"
-            ]
-        },
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- Установка плагина для IDE (https://github.com/barryvdh/laravel-debugbar)
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
+- [Hyper Host](https://hyper.host)
 
-        composer require barryvdh/laravel-debugbar --dev
+## Contributing
 
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Если проект склонирован в каталог, что нужно сделать:
+## Security Vulnerabilities
 
-- .env - Нужно создать файл с настройками, который отсутсвует/не копируется в git
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-        cp ./.env.example ./.env
-        
-- Создаем ключ для приложения
+## License
 
-        php artisan key:generate
-        
-- Обновить модули композера и сгенерить /vendor
-
-        compose update        
-        
-        
-
-
-## Блог
-
-- создание модели и миграции
-
-        php artisan make:model Models/BlogCategory -m
-        
-- чтобы миграции работали на более новых БД нужно добавить длинну строки по умолчанию:
-    Миграции хранятсяв каталоге: database/migrations
-
-        Добавить в AppServiceProvider->boot() 
-        
-            Schema::defaultStringLength(191);
-            
-- Запуск миграций
-
-        php artisan migrate
-
-- Добавить фейковые данные можно с помощью Сидеров и Фабрики. Добавляем данные с помощью сида. 
-    Хранятся в каталоге database/seeds
-
-        php artisan make:seeder UserTableSeeder
-
-- Запуск сидов
-
-        php artisan db:seed
-        php artisan db:seed --class=UserTableSeeder
-        
-        // Сначала все удалим, потом накатим все миграции и сиды
-        php artisan migrate:refresh --seed
-        
-        // Если выходит ошибка, что нет классов с сидами ReflectionException  : Class UsersTableSeeder does not exist
-            связано это с Composer.json он прописывает классы в Class map, которые связаны с database классом.
-            
-        composer dumpautoload
-
-        
-        
-- Создаем фабрики factory и связываем модель BlogPost
-
-        php artisan make:factory BlogPostFactory --model="App\Models\BlogPost"
-        
-- Создание rest тестового контроллера, с ресурсами - rest функциями (--resource)
-
-        php artisan make:controller RestTestController --resource    
-        
-- Создание контроллеров блога 
-    
-        php artisan make:controller Blog/BaseController
-        
-        // Создадим ресурсный контроллер постов
-        php artisan make:controller Blog/PostController --resource
-        
-- Авторизация для сайта
-
-        php artisan make:auth
-    
-        // запустим миграции
-        php artisan migrate
-    
-        // проверим работу
-        /register
-        
-- Админка Блога: Добавляем контроллер категорий
-
-        php artisan make:controller Blog/Admin/CategoryController --resource
-        
-- Создаем базовый контроллер для админки блога
-
-        php artisan make:controller Blog/Admin/BaseController
-        
-        // Нужно его сделать абстрактным и наследовать от базового контроллера блога
-
-
-- Валидация
-    
-    1) Можно проводить валидацию данных с формы в контроллере
-    2) Можно валидацию вынести в свой класс resquest --> BlogCategoryUpdateRequest
-    этот класс будет расширять FormRequest, полученные данные с формы.
-    **!!! Это считается лучшим вариантом, отдельной прослойкой для валидации.**
-
-    
-        php artisan make:request BlogCategoryUpdateRequest
-
-        - переносим $rules в BlogCategoryUpdateRequest->rules()
-        - Используем BlogCategoryUpdateRequest вместо Request $request в нашей ф-ции update
-             
-
-- Репозиторий - это класс-прослойка между хранилищем БД или моделью и контроллером, сюда переносится
-    логика из контроллера, чтобы облегчить контроллер.
-
-## Дополнительно
-
-- Преобразование строки в slug для URL
-
-        $slug = str_slug('string');
-        
-        или в более новой версии laravel
-        
-        $slug = Str::slug('string');
-
-
-- Получаем хеш пароля 
-
-        $password = bcrypt('123123);
-        
-- Если при создании таблицы в миграциях мы добавили softDeletes(), тогда в модель
-    тоже нужнжо добавить трейт SoftDeletes. При выборке будт выбираться только 
-    не удаленные записи. 
-    
-        class BlogPost extends Model 
-        {
-            use SoftDeletes;
-        }  
-    
-    чтобы показать все записи, вместе с удаленными в контроллере нужно писать запрос
-    с методом withTrashed()
-    
-    
-        $items = BlogPost::withTrashed()->all()
-        
-- Model: Список полей для заполнения с помощью 
-
-        в модели добавляем список допустимых полей для заполнения
-        
-        protected $fillable = ['title', 'slug', 'parent_id'];
-        
-        а в контроллере
-            $item = BlogController::find($id);
-            $res = $item->fill($date)->save(); // Заполняем и Сохраняем данные
-            
-- Редиректы в контроллере
-
-        if ($result) {
-            // редирект на страницу редактирования с передачей успешного ответа в сессиях (session('success'))
-            return redirect()
-                ->route('blog.admin.categories.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
-        } else {
-        
-            // Возврат назад, с передачей ошибки в сессию ($errors->all())
-            return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
-                ->withInput();
-        }  
-        
-- При создании нового объекта, можно проверить, если на него запись в базе (->exist)
-
-        $item = new BlogCategory();
-        if ($item->exist) {
-            // true в базе есть запись
-        } else {
-            // false - в базе нет записей, при создании объекта
-        }
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

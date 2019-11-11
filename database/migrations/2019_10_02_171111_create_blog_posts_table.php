@@ -14,10 +14,10 @@ class CreateBlogPostsTable extends Migration
     public function up()
     {
         Schema::create('blog_posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 
-            $table->integer('category_id')->unsigned()->comment('Категория поста');
-            $table->integer('user_id')->unsigned()->comment('автор статьи');
+            $table->bigInteger('category_id')->unsigned()->comment('Категория поста');
+            $table->bigInteger('user_id')->unsigned()->comment('автор статьи');
 
             $table->string('slug')->unique()->comment('уникальный title в транслите для url');
             $table->string('title')->comment('Заголовок статьи');
