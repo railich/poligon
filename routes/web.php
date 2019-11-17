@@ -53,5 +53,5 @@ Route::group($groupData, function(){
     //BlogPost
     Route::resource('posts', 'PostController')
         ->except(['show']) // кроме метода show
-        ->names('blog.admin.posts');
+        ->names('blog.admin.posts'); // задаем имя, по которому можно обратиться через метод route('blog.admin.posts')
 });

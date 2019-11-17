@@ -6,6 +6,7 @@ use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
 use App\Repositories\BlogCategoryRepository;
+use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;
 
 
@@ -20,11 +21,17 @@ class CategoryController extends BaseController
      */
     private $blogCategoryRepository;
 
+    /**
+     * @var BlogPostRepository
+     */
+    private $blogPostRepository;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+        $this->blogPostRepository = app(BlogPostRepository::class);
     }
 
     /**

@@ -10,7 +10,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class BlogPostRepository extends CoreRepository
 {
     /**
-     * @return string
+     * Реализация метода абстрактного класса получение названия класса модели
+     * в данном случае App\Models\BlogPost
+     *
+     * @return string - App\Models\BlogPost
      */
     protected function getModelClass()
     {
@@ -60,5 +63,16 @@ class BlogPostRepository extends CoreRepository
             ->paginate(25);
 
         return $result;
+    }
+
+    /**
+     * Получаем модель для редактирования в админке
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getEdit($id)
+    {
+        return $this->startConditions()->find($id);
     }
 }
