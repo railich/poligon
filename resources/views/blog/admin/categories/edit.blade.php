@@ -18,7 +18,7 @@
             @endphp
 
             @if($errors->any())
-                <div class="row justify-content-center">
+                <div class="row justify-content-center alertDanger">
                     <div class="col-md-11">
                         <div class="alert alert-danger" role="alert">
                             <button class="close" type="button" data-dismiss="alert" aria-label="close">
@@ -31,7 +31,7 @@
             @endif
 
             @if(session('success'))
-                <div class="row justify-content-center">
+                <div class="row justify-content-center alertSuccess">
                     <div class="col-md-11">
                         <div class="alert alert-success" role="alert">
                             <button class="close" type="button" data-dismiss="alert" aria-label="close">

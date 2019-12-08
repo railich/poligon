@@ -4,23 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 /**
- * App\Models\BlogPost
+ * class BlogPost
+ *
+ * @package App\Models
  *
  * @property int $id
- * @property int $category_id Категория поста
- * @property int $user_id автор статьи
- * @property string $slug уникальный title в транслите для url
- * @property string $title Заголовок статьи
- * @property string|null $excerpt Выдержка из статьи
- * @property string $content_raw Статья в формате markdown
- * @property string $content_html Статья в формате html, создается автоматом из raw
- * @property int $is_published Опубликовано = 1 или нет = 0
- * @property string|null $published_at Дата опубликования
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \App\Models\BlogCategory           $category
+ * @property \App\Models\User                   $user
+ * @property int                                $category_id    Категория поста
+ * @property int                                $user_id        автор статьи
+ * @property string                             $slug           уникальный title в транслите для url
+ * @property string                             $title          Заголовок статьи
+ * @property string|null                        $excerpt        Выдержка из статьи
+ * @property string                             $content_raw    Статья в формате markdown
+ * @property string                             $content_html   Статья в формате html, создается автоматом из raw
+ * @property boolean                            $is_published   Опубликовано = 1 или нет = 0
+ * @property string|null                        $published_at   Дата опубликования
+ * @property \Illuminate\Support\Carbon|null    $created_at
+ * @property \Illuminate\Support\Carbon|null    $updated_at
+ * @property string|null                        $deleted_at
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BlogPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BlogPost newQuery()
@@ -48,6 +54,18 @@ class BlogPost extends Model
 {
     // подключим trait для того, чтобы в выборке не участвовали удаленные позиции
     use SoftDeletes;
+
+    // Объявим поля которые доступны для заполнения
+    protected $fillable = [
+        'title',
+        'slug',
+        'category_id',
+        'excerpt',
+        'content_raw',
+        'is_published',
+        'published_at',
+        'user_id'
+    ];
 
     /**
      * Категория статьи
